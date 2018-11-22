@@ -1,23 +1,25 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import AppRouter from './app-router';
 import './App.scss';
-import LoginComponent from './login/login.component'
-
 import logo from './logo.svg';
 
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
+      <section>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <LoginComponent />
-      </div>
-
+        <nav>
+          <ul>
+            <li><Link to='/'>Register</Link></li>
+            <li><Link to='/list'>Accounts List</Link></li>
+          </ul>
+        </nav>
+        <AppRouter />
+      </section>
     );
   }
 }
