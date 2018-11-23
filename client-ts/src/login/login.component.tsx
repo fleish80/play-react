@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { IAccount } from 'src/account';
+import LoginService from './login.service';
 
 class LoginComponent extends React.Component<{}, IAccount> {
   
+private loginService = new LoginService();
+
   /**
    *
    */
@@ -37,7 +40,7 @@ class LoginComponent extends React.Component<{}, IAccount> {
 
   private submit = (e: any) => {
     e.preventDefault();
-    console.log('account', this.state);
+    this.loginService.create(this.state);
   }
 
   private onUsernameChanged = (e: any) => {
