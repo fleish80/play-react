@@ -5,6 +5,7 @@ export default class LoginService {
     private url: string = '/api/account';
 
     public async create(data: IAccount) {
+        console.log('data', data);
         const response = await fetch(this.url, {
             body: JSON.stringify({ data }),           
             headers: {
