@@ -1,19 +1,33 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
-const port = process.env.PORT || 5000;
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const mongoose = require('mongoose');
 
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
+const app = express();
+
+mongoose.connect('mongodb://localhost:27017/accounts',
+{
+  useNewUrlParser: true,
+  useCreateIndex: true
 });
-app.post('/api/world', (req, res) => {
-  console.log(req.body);
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`,
-  );
-});
+
+mongoose.Promise = global.Promise;
+
+const port = process.env.PORT || 5000;
+
+// app.use(bodyParser.urlencoded({
+//   extended: true
+// }))
+app.use(bodyParser.json());
+
+// initialize routes
+app.use('./api', require('./routes/account'));
+
+// errror handling middleware
+// app.use((err, req, res, next) => {
+//   res.status(422).send({error: err.message})
+// });
+
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
