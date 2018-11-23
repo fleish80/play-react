@@ -2,12 +2,19 @@ import * as React from 'react';
 import { IAccount } from 'src/account';
 
 class LoginComponent extends React.Component<{}, IAccount> {
-
-  public state: IAccount = {
-    password: '',
-    username: ''
+  
+  /**
+   *
+   */
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      password: '',
+      username: ''
+    }
+    
   }
-
+ 
   // private loginService = new LoginService();
 
   public render() {
@@ -28,16 +35,17 @@ class LoginComponent extends React.Component<{}, IAccount> {
     );
   }
 
-  private submit() {
+  private submit = (e: any) => {
+    e.preventDefault();
     console.log('account', this.state);
   }
 
-  private onUsernameChanged(e: any) {
+  private onUsernameChanged = (e: any) => {
     e.preventDefault();
     this.setState({ username: e.target.value });
   }
 
-  private onPasswordChanged(e: any) {
+  private onPasswordChanged= (e: any) => {
     e.preventDefault();
     this.setState({ password: e.target.value });
   }
