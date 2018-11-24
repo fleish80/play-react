@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IAccount } from 'src/account';
+import { IAccount } from './../account';
 import LoginService from './login.service';
 
 class LoginComponent extends React.Component<{}, IAccount> {

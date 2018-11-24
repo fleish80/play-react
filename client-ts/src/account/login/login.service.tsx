@@ -1,4 +1,4 @@
-import { IAccount } from 'src/account';
+import { IAccount } from 'src/account/account';
 
 export default class LoginService {
 
