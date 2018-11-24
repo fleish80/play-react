@@ -40,6 +40,7 @@ private loginService = new LoginService();
 
   private submit = (e: any) => {
     e.preventDefault();
+    console.log('state in login.component', this.state);
     this.loginService.create(this.state);
   }
 
