@@ -4,22 +4,17 @@ import LoginService from './login.service';
 
 class LoginComponent extends React.Component<{}, IAccount> {
   
-private loginService = new LoginService();
+private loginService: LoginService;
 
-  /**
-   *
-   */
   constructor(props: any) {
     super(props);
     this.state = {
       password: '',
       username: ''
     }
-    
+    this.loginService = LoginService.Instance;
   }
  
-  // private loginService = new LoginService();
-
   public render() {
     return (
       <form onSubmit={this.submit}>
@@ -38,10 +33,12 @@ private loginService = new LoginService();
     );
   }
 
-  private submit = (e: any) => {
+  private submit = async (e: any) => {
     e.preventDefault();
     console.log('state in login.component', this.state);
-    this.loginService.create(this.state);
+    const ans = await this.loginService.create(this.state);
+    const json = await ans.json();
+    console.log(json, 'json');
   }
 
   private onUsernameChanged = (e: any) => {
